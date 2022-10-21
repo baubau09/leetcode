@@ -10,6 +10,10 @@ class SquaresOfASortedArray{
         }
 
     }
+    // square then merge sort for N+NlogN time and N space
+    // however there are other approachs I will try after this
+    // TODO: try more optimal approaches
+
     static void merge(int arr[], int l, int m, int r)
     {
         // Find sizes of two subarrays to be merged

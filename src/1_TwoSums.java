@@ -1,3 +1,6 @@
+import java.util.HashMap;
+import java.util.Map;
+
 class TwoSums {
 
     public static void main(String[] args) {
@@ -8,7 +11,7 @@ class TwoSums {
         int arr4[] = {9,7,11,1,15,5};
 
 
-        int res[] = twoSum(arr4, target);
+        int res[] = twoSum2(arr4, target);
 
         for (int i = 0; i < res.length; i++) {
             System.out.println(res[i]);
@@ -35,6 +38,22 @@ class TwoSums {
         return arr;
     }
 
-    // 2nd attempt: optimize - hash table
+    // 2nd attempt: optimize - hash table / map
     // O(N) time, O(N) space
+    public static int[] twoSum2(int[] nums, int target) {
+        int res[] = new int[0];
+        Map<Integer,Integer> seenNums = new HashMap<>();
+
+        for (int i = 0; i < nums.length; i++) {
+            int diff = target - nums[i];
+            if (seenNums.containsKey(diff)) {
+                res = new int[2];
+                res[0] = i;
+                res[1] = seenNums.get(diff);
+            }
+            seenNums.put(nums[i],i);
+        }
+
+        return res;
+    }
 }

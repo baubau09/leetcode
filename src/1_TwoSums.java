@@ -39,7 +39,7 @@ class TwoSums {
     }
 
     // 2nd attempt: optimize - hash table / map
-    // O(N) time, O(N) space
+    // O(N) time, O(N) space - trade space for time
     public static int[] twoSum2(int[] nums, int target) {
         int res[] = new int[0];
         Map<Integer,Integer> seenNums = new HashMap<>();

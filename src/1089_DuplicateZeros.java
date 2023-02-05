@@ -2,7 +2,8 @@ class DuplicateZeros {
     public static void main(String[] args) {
         //Input: arr = [1,0,2,3,0,4,5,0]
         //Output: [1,0,0,2,3,0,0,4]
-        //Explanation: After calling your function, the input array is modified to: [1,0,0,2,3,0,0,4]
+        //Explanation: After calling your function, the input array is modified to:
+        //       [1,0,0,2,3,0,0,4]
         int arr[] = {1,0,2,3,0,4,5,0};
 //        int arr[] = {1,0,2,0,3,0,4,5,0,6};
 //        int arr[] = {8,4,5,0,0,0,0,7};

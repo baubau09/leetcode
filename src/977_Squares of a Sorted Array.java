@@ -1,19 +1,23 @@
 class SquaresOfASortedArray{
     public static void main(String []argh){
         int nums[] = {-4,-1,0,3,10};
-        for (int i = 0; i < nums.length; i++) {
-            nums[i] = (int) Math.pow(nums[i], 2);
-        }
-        sort(nums,0,nums.length-1);
-        for (int val : nums) {
+        int res[] = sortedSquares(nums);
+
+        for (int val : res) {
             System.out.printf("%d ", val);
         }
 
     }
+
+    public static void squareNums(int nums[]) {
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = (int) Math.pow(nums[i], 2);
+        }
+    }
+
+    // approach 1:
     // square then merge sort for N+NlogN time and N space
     // however there are other approachs I will try after this
-    // TODO: try more optimal approaches
-
     static void merge(int arr[], int l, int m, int r)
     {
         // Find sizes of two subarrays to be merged
@@ -64,7 +68,7 @@ class SquaresOfASortedArray{
         }
     }
 
-    // Main function that sorts arr[l..r] using
+    // Main function that sorts arr[l..r] using merge
     // merge()
     static void sort(int arr[], int l, int r)
     {
@@ -79,5 +83,36 @@ class SquaresOfASortedArray{
             // Merge the sorted halves
             merge(arr, l, m, r);
         }
+    }
+
+
+
+    // approach 2:
+    // O(N) time, O(N) Space
+    // two pointers
+    // [-3, -2, -1 ,2 ,4, 5, 6]
+    // the largest number after square will either be on the far left or far right
+    // so we can iterate reversely
+    // and compare the absolute values of the two ends of the original array
+    // for example |-3| and |6| => |6| is larger
+    // => send 6 the end of the resulting array
+    // then |-3| and |5| => |5| is larger
+    // then -3 and 4, and so on
+    public static int[] sortedSquares(int[] nums) {
+        int left = 0;
+        int right = nums.length - 1;
+
+        int[] res = new int[nums.length];
+
+        for (int i = nums.length - 1; i >= 0 ; i--) {
+            if (Math.abs(nums[left]) > Math.abs(nums[right])) {
+                res[i] = nums[left] * nums[left];
+                left++;
+            } else {
+                res[i] = nums[right] * nums[right];
+                right--;
+            }
+        }
+        return res;
     }
 }
